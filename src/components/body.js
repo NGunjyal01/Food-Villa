@@ -9,6 +9,7 @@ function filterData(searchInput, resturants){
     return Data;
 }
 
+
 const Body = () => {
     const [resutrants, setResturants]= useState(ResturantList);
     const [searchInput, setSearchInput]=useState();
