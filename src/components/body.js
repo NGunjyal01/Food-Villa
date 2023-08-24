@@ -5,14 +5,15 @@ import Shimmer from "./shimmer";
 
 function filterData(searchInput, resturants){
     const Data= resturants.filter((resturant)=>{
-        return resturant.info.name.includes(searchInput)
+        return resturant?.info?.name?.toLowerCase()?.includes(searchInput?.toLowerCase())
     });
     return Data;
 }
 
 
 const Body = () => {
-    const [resturants, setResturants]= useState([]);
+    const [allResturants, setAllResturants] = useState([]);
+    const [filteredResturants, setFilteredResturants]= useState([]);
     const [searchInput, setSearchInput]=useState();
 
     useEffect( () =>{
@@ -24,14 +25,15 @@ const Body = () => {
         const json = await data.json();
         console.log(json);
         //optinal chaining
-        setResturants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);   
+        setAllResturants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredResturants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);   
     }
     console.log("render");
     //conditional rendering
     //if resturant is empty -> shimmer ui
     //if resturant has data -> actual data ui
 
-    return (resturants.length === 0) ? <Shimmer/>:(
+    return (allResturants.length === 0) ? <Shimmer/>:(
         <>
             <div className="search-container">
                 <input
@@ -42,13 +44,13 @@ const Body = () => {
                 />
                 <button className="search-btn"
                     onClick={()=>{
-                        const Data= filterData(searchInput, resutrants);
-                        setResturants(Data);
+                        const Data= filterData(searchInput, allResturants);
+                        setFilteredResturants(Data);
                     }}
                 >search</button>
             </div>
             <div className="resturant-list">
-                {resturants.map(resturant => {
+                {filteredResturants.map(resturant => {
                     return (<ResturantCard {...resturant.info} key={resturant.info.id} />);
                 })}
             </div>
