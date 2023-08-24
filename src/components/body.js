@@ -33,6 +33,8 @@ const Body = () => {
     //if resturant is empty -> shimmer ui
     //if resturant has data -> actual data ui
 
+    if(!allResturants)  return null;
+
     return (allResturants.length === 0) ? <Shimmer/>:(
         <>
             <div className="search-container">
@@ -50,7 +52,8 @@ const Body = () => {
                 >search</button>
             </div>
             <div className="resturant-list">
-                {filteredResturants.map(resturant => {
+                {(filteredResturants.length===0) ? <h1>No Restaurants Matched your filter</h1>:
+                filteredResturants.map(resturant => {
                     return (<ResturantCard {...resturant.info} key={resturant.info.id} />);
                 })}
             </div>
