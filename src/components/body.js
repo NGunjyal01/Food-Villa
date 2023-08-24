@@ -1,6 +1,7 @@
 import { ResturantList } from "../constans";
 import ResturantCard from "./ResturantCard";
 import { useState, useEffect } from "react";
+import Shimmer from "./shimmer";
 
 function filterData(searchInput, resturants){
     const Data= resturants.filter((resturant)=>{
@@ -11,7 +12,7 @@ function filterData(searchInput, resturants){
 
 
 const Body = () => {
-    const [resturants, setResturants]= useState(ResturantList);
+    const [resturants, setResturants]= useState([]);
     const [searchInput, setSearchInput]=useState();
 
     useEffect( () =>{
@@ -26,7 +27,11 @@ const Body = () => {
         setResturants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);   
     }
     console.log("render");
-    return (
+    //conditional rendering
+    //if resturant is empty -> shimmer ui
+    //if resturant has data -> actual data ui
+
+    return (resturants.length === 0) ? <Shimmer/>:(
         <>
             <div className="search-container">
                 <input
