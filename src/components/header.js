@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import About from "./about"
 
 const Title = () => {
     return (
@@ -15,8 +17,8 @@ const Header = () => {
             <Title />
             <div className="nav-items">
                 <ul>
-                    <li>home</li>
-                    <li>about</li>
+                    <li><Link to="/">home</Link></li>
+                    <li><Link to="/about">about</Link></li>
                     <li>contact</li>
                     <li>cart</li>
                 </ul>

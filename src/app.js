@@ -22,6 +22,9 @@ import Header from "./components/header"
 import Body from "./components/body"
 import Footer from "./components/footer"
 import { IMG_CND_URL } from "./constans";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import About from "./components/about"
+import Error from "./components/error"
 
 const AppLayout = () => {
     return (
@@ -33,5 +36,17 @@ const AppLayout = () => {
     );
 };
 
+const appRouter = createBrowserRouter([
+    {
+        path: "/",
+        element: <AppLayout/>,
+        errorElement: <Error/>,
+    },
+    {
+        path: "/about",
+        element: <About/>,
+    }
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout/>);
+root.render(<RouterProvider router={appRouter} />);
