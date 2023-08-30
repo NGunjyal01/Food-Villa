@@ -16,7 +16,7 @@
  *      copyrightWS
  */
 
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/header"
 import Body from "./components/body"
@@ -28,6 +28,9 @@ import Error from "./components/error"
 import Contact from "./components/contact"
 import RestaurantMenu from "./components/restaurantMenu";
 import Profile from "./components/profile";
+import Shimmer from "./components/shimmer";
+
+const Instamart = lazy(()=>import("./components/Instamart"));
 
 
 const AppLayout = () => {
@@ -67,6 +70,10 @@ const appRouter = createBrowserRouter([
             {
                 path: "/restaurnt/:id",
                 element: <RestaurantMenu/>,
+            },
+            {
+                path: "instamart",
+                element: <Suspense fallback={<Shimmer/>}><Instamart/></Suspense>
             }
         ]
     }
