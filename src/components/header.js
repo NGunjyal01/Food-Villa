@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import About from "./about"
 
 const Title = () => {
     return (
@@ -15,10 +17,10 @@ const Header = () => {
             <Title />
             <div className="nav-items">
                 <ul>
-                    <li>home</li>
-                    <li>about</li>
-                    <li>contact</li>
-                    <li>cart</li>
+                    <li><Link to="/">home</Link></li>
+                    <li><Link to="/about">about</Link></li>
+                    <li><Link to="/contact">contact</Link></li>
+                    <li><Link to="/cart">cart</Link></li>
                 </ul>
             </div>
             {isLogedIn ? <button onClick={ () => setIsLogedIn(false) }>Log Out</button> : 
