@@ -2325,3 +2325,6 @@ export const ResturantList = [
         }
     }
 ];
+
+export const FETCH_MENU_URL = ["https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.4985057&lng=81.8678321&restaurantId="
+                                ,"&catalog_qa=undefined&submitAction=ENTER"];
